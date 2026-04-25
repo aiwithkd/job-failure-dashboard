@@ -125,6 +125,7 @@ log_sample = (
 )
 log_sample["start_time"] = log_sample["start_time"].dt.strftime("%Y-%m-%d %H:%M")
 log_sample["sla_breached"] = log_sample["sla_breached"].astype(bool)
+log_sample = log_sample.fillna("")
 
 # ── Assemble summary JSON ──────────────────────────────────────────────────────
 summary = {
@@ -152,7 +153,8 @@ summary = {
 }
 
 with open("data/summary.json", "w") as f:
-    json.dump(summary, f, indent=2, default=str)
+    # replace NaN with null for valid JSON (Pandas can produce NaN for missing numerics)
+    json.dump(summary, f, indent=2, allow_nan=False, default=lambda x: None if (isinstance(x, float) and x != x) else str(x))
 
 print(f"\nSummary written → data/summary.json")
 print(f"Top 3 unstable jobs:")

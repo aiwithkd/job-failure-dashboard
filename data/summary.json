@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25 19:27:47",
+  "generated_at": "2026-04-25 19:48:47",
   "kpis": {
     "total_runs": 5000,
     "total_failed": 1168,
@@ -2557,7 +2557,7 @@
       "duration_min": 8,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2567,7 +2567,7 @@
       "duration_min": 6,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2577,7 +2577,7 @@
       "duration_min": 90,
       "sla_limit_min": 45,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2587,7 +2587,7 @@
       "duration_min": 11,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2607,7 +2607,7 @@
       "duration_min": 35,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2617,7 +2617,7 @@
       "duration_min": 23,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2627,7 +2627,7 @@
       "duration_min": 13,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2637,7 +2637,7 @@
       "duration_min": 5,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2647,7 +2647,7 @@
       "duration_min": 20,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2657,7 +2657,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2667,7 +2667,7 @@
       "duration_min": 16,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2697,7 +2697,7 @@
       "duration_min": 14,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2707,7 +2707,7 @@
       "duration_min": 24,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2717,7 +2717,7 @@
       "duration_min": 10,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2737,7 +2737,7 @@
       "duration_min": 20,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2747,7 +2747,7 @@
       "duration_min": 42,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2757,7 +2757,7 @@
       "duration_min": 9,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2767,7 +2767,7 @@
       "duration_min": 10,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2777,7 +2777,7 @@
       "duration_min": 16,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2797,7 +2797,7 @@
       "duration_min": 78,
       "sla_limit_min": 30,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2807,7 +2807,7 @@
       "duration_min": 92,
       "sla_limit_min": 45,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2817,7 +2817,7 @@
       "duration_min": 16,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2837,7 +2837,7 @@
       "duration_min": 11,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2857,7 +2857,7 @@
       "duration_min": 14,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2867,7 +2867,7 @@
       "duration_min": 59,
       "sla_limit_min": 45,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2877,7 +2877,7 @@
       "duration_min": 8,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2907,7 +2907,7 @@
       "duration_min": 23,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2917,7 +2917,7 @@
       "duration_min": 15,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2927,7 +2927,7 @@
       "duration_min": 9,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2937,7 +2937,7 @@
       "duration_min": 37,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2957,7 +2957,7 @@
       "duration_min": 22,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2967,7 +2967,7 @@
       "duration_min": 12,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -2977,7 +2977,7 @@
       "duration_min": 46,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3007,7 +3007,7 @@
       "duration_min": 16,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3017,7 +3017,7 @@
       "duration_min": 86,
       "sla_limit_min": 50,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3037,7 +3037,7 @@
       "duration_min": 17,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3047,7 +3047,7 @@
       "duration_min": 14,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3057,7 +3057,7 @@
       "duration_min": 28,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3067,7 +3067,7 @@
       "duration_min": 23,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3077,7 +3077,7 @@
       "duration_min": 27,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3087,7 +3087,7 @@
       "duration_min": 22,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3097,7 +3097,7 @@
       "duration_min": 8,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3117,7 +3117,7 @@
       "duration_min": 11,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3137,7 +3137,7 @@
       "duration_min": 8,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3147,7 +3147,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3157,7 +3157,7 @@
       "duration_min": 14,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3167,7 +3167,7 @@
       "duration_min": 7,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3177,7 +3177,7 @@
       "duration_min": 24,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3187,7 +3187,7 @@
       "duration_min": 37,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3197,7 +3197,7 @@
       "duration_min": 24,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3207,7 +3207,7 @@
       "duration_min": 18,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3217,7 +3217,7 @@
       "duration_min": 35,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3227,7 +3227,7 @@
       "duration_min": 17,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3257,7 +3257,7 @@
       "duration_min": 5,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3267,7 +3267,7 @@
       "duration_min": 6,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3277,7 +3277,7 @@
       "duration_min": 11,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3297,7 +3297,7 @@
       "duration_min": 15,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3307,7 +3307,7 @@
       "duration_min": 36,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3327,7 +3327,7 @@
       "duration_min": 63,
       "sla_limit_min": 10,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3337,7 +3337,7 @@
       "duration_min": 6,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3347,7 +3347,7 @@
       "duration_min": 30,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3357,7 +3357,7 @@
       "duration_min": 21,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3367,7 +3367,7 @@
       "duration_min": 7,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3377,7 +3377,7 @@
       "duration_min": 70,
       "sla_limit_min": 35,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3397,7 +3397,7 @@
       "duration_min": 87,
       "sla_limit_min": 45,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3427,7 +3427,7 @@
       "duration_min": 38,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3437,7 +3437,7 @@
       "duration_min": 21,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3457,7 +3457,7 @@
       "duration_min": 17,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3467,7 +3467,7 @@
       "duration_min": 43,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3477,7 +3477,7 @@
       "duration_min": 15,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3487,7 +3487,7 @@
       "duration_min": 66,
       "sla_limit_min": 15,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3497,7 +3497,7 @@
       "duration_min": 65,
       "sla_limit_min": 15,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3507,7 +3507,7 @@
       "duration_min": 6,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3527,7 +3527,7 @@
       "duration_min": 14,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3547,7 +3547,7 @@
       "duration_min": 16,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3557,7 +3557,7 @@
       "duration_min": 6,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3567,7 +3567,7 @@
       "duration_min": 23,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3577,7 +3577,7 @@
       "duration_min": 14,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3597,7 +3597,7 @@
       "duration_min": 11,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3617,7 +3617,7 @@
       "duration_min": 13,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3627,7 +3627,7 @@
       "duration_min": 10,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3647,7 +3647,7 @@
       "duration_min": 5,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3657,7 +3657,7 @@
       "duration_min": 74,
       "sla_limit_min": 15,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3677,7 +3677,7 @@
       "duration_min": 26,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3687,7 +3687,7 @@
       "duration_min": 9,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3707,7 +3707,7 @@
       "duration_min": 27,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3717,7 +3717,7 @@
       "duration_min": 5,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3727,7 +3727,7 @@
       "duration_min": 25,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3737,7 +3737,7 @@
       "duration_min": 6,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3747,7 +3747,7 @@
       "duration_min": 62,
       "sla_limit_min": 35,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3757,7 +3757,7 @@
       "duration_min": 5,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3767,7 +3767,7 @@
       "duration_min": 17,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3787,7 +3787,7 @@
       "duration_min": 38,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3797,7 +3797,7 @@
       "duration_min": 12,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3807,7 +3807,7 @@
       "duration_min": 18,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3827,7 +3827,7 @@
       "duration_min": 6,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3837,7 +3837,7 @@
       "duration_min": 21,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3847,7 +3847,7 @@
       "duration_min": 22,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3857,7 +3857,7 @@
       "duration_min": 47,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3867,7 +3867,7 @@
       "duration_min": 5,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3877,7 +3877,7 @@
       "duration_min": 22,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3887,7 +3887,7 @@
       "duration_min": 32,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3897,7 +3897,7 @@
       "duration_min": 31,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3917,7 +3917,7 @@
       "duration_min": 11,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3927,7 +3927,7 @@
       "duration_min": 16,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3937,7 +3937,7 @@
       "duration_min": 50,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3977,7 +3977,7 @@
       "duration_min": 20,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -3987,7 +3987,7 @@
       "duration_min": 5,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4027,7 +4027,7 @@
       "duration_min": 33,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4037,7 +4037,7 @@
       "duration_min": 44,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4047,7 +4047,7 @@
       "duration_min": 22,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4057,7 +4057,7 @@
       "duration_min": 11,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4067,7 +4067,7 @@
       "duration_min": 14,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4077,7 +4077,7 @@
       "duration_min": 16,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4087,7 +4087,7 @@
       "duration_min": 38,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4107,7 +4107,7 @@
       "duration_min": 5,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4117,7 +4117,7 @@
       "duration_min": 14,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4127,7 +4127,7 @@
       "duration_min": 17,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4137,7 +4137,7 @@
       "duration_min": 22,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4147,7 +4147,7 @@
       "duration_min": 27,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4177,7 +4177,7 @@
       "duration_min": 34,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4187,7 +4187,7 @@
       "duration_min": 20,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4207,7 +4207,7 @@
       "duration_min": 30,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4217,7 +4217,7 @@
       "duration_min": 9,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4227,7 +4227,7 @@
       "duration_min": 58,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4237,7 +4237,7 @@
       "duration_min": 42,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4247,7 +4247,7 @@
       "duration_min": 23,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4257,7 +4257,7 @@
       "duration_min": 11,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4267,7 +4267,7 @@
       "duration_min": 12,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4277,7 +4277,7 @@
       "duration_min": 31,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4287,7 +4287,7 @@
       "duration_min": 47,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4297,7 +4297,7 @@
       "duration_min": 11,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4317,7 +4317,7 @@
       "duration_min": 6,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4327,7 +4327,7 @@
       "duration_min": 37,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4347,7 +4347,7 @@
       "duration_min": 12,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4357,7 +4357,7 @@
       "duration_min": 6,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4367,7 +4367,7 @@
       "duration_min": 10,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4377,7 +4377,7 @@
       "duration_min": 18,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4387,7 +4387,7 @@
       "duration_min": 40,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4397,7 +4397,7 @@
       "duration_min": 19,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4417,7 +4417,7 @@
       "duration_min": 101,
       "sla_limit_min": 55,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4437,7 +4437,7 @@
       "duration_min": 8,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4447,7 +4447,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4457,7 +4457,7 @@
       "duration_min": 21,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4467,7 +4467,7 @@
       "duration_min": 12,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4477,7 +4477,7 @@
       "duration_min": 34,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4487,7 +4487,7 @@
       "duration_min": 14,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4497,7 +4497,7 @@
       "duration_min": 22,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4507,7 +4507,7 @@
       "duration_min": 26,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4517,7 +4517,7 @@
       "duration_min": 18,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4547,7 +4547,7 @@
       "duration_min": 15,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4557,7 +4557,7 @@
       "duration_min": 11,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4597,7 +4597,7 @@
       "duration_min": 13,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4607,7 +4607,7 @@
       "duration_min": 7,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4617,7 +4617,7 @@
       "duration_min": 17,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4627,7 +4627,7 @@
       "duration_min": 11,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4637,7 +4637,7 @@
       "duration_min": 103,
       "sla_limit_min": 55,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4647,7 +4647,7 @@
       "duration_min": 9,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4657,7 +4657,7 @@
       "duration_min": 17,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4677,7 +4677,7 @@
       "duration_min": 25,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4687,7 +4687,7 @@
       "duration_min": 5,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4697,7 +4697,7 @@
       "duration_min": 9,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4707,7 +4707,7 @@
       "duration_min": 6,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4717,7 +4717,7 @@
       "duration_min": 25,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4757,7 +4757,7 @@
       "duration_min": 21,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4767,7 +4767,7 @@
       "duration_min": 28,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4777,7 +4777,7 @@
       "duration_min": 39,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4797,7 +4797,7 @@
       "duration_min": 43,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4807,7 +4807,7 @@
       "duration_min": 25,
       "sla_limit_min": 20,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4827,7 +4827,7 @@
       "duration_min": 25,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4847,7 +4847,7 @@
       "duration_min": 7,
       "sla_limit_min": 15,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4857,7 +4857,7 @@
       "duration_min": 13,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4897,7 +4897,7 @@
       "duration_min": 12,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4907,7 +4907,7 @@
       "duration_min": 23,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4917,7 +4917,7 @@
       "duration_min": 17,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4927,7 +4927,7 @@
       "duration_min": 6,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4937,7 +4937,7 @@
       "duration_min": 45,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4947,7 +4947,7 @@
       "duration_min": 50,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4957,7 +4957,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4967,7 +4967,7 @@
       "duration_min": 29,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4977,7 +4977,7 @@
       "duration_min": 34,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -4997,7 +4997,7 @@
       "duration_min": 42,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5017,7 +5017,7 @@
       "duration_min": 12,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5027,7 +5027,7 @@
       "duration_min": 21,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5037,7 +5037,7 @@
       "duration_min": 14,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5057,7 +5057,7 @@
       "duration_min": 14,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5067,7 +5067,7 @@
       "duration_min": 14,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5077,7 +5077,7 @@
       "duration_min": 18,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5087,7 +5087,7 @@
       "duration_min": 14,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5097,7 +5097,7 @@
       "duration_min": 27,
       "sla_limit_min": 10,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5107,7 +5107,7 @@
       "duration_min": 40,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5117,7 +5117,7 @@
       "duration_min": 19,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5137,7 +5137,7 @@
       "duration_min": 38,
       "sla_limit_min": 30,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5147,7 +5147,7 @@
       "duration_min": 39,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5157,7 +5157,7 @@
       "duration_min": 34,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5167,7 +5167,7 @@
       "duration_min": 30,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5177,7 +5177,7 @@
       "duration_min": 6,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5187,7 +5187,7 @@
       "duration_min": 35,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5197,7 +5197,7 @@
       "duration_min": 17,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5217,7 +5217,7 @@
       "duration_min": 72,
       "sla_limit_min": 30,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5227,7 +5227,7 @@
       "duration_min": 43,
       "sla_limit_min": 60,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5237,7 +5237,7 @@
       "duration_min": 7,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5247,7 +5247,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5257,7 +5257,7 @@
       "duration_min": 14,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5277,7 +5277,7 @@
       "duration_min": 6,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5287,7 +5287,7 @@
       "duration_min": 33,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5297,7 +5297,7 @@
       "duration_min": 26,
       "sla_limit_min": 35,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5317,7 +5317,7 @@
       "duration_min": 79,
       "sla_limit_min": 45,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5327,7 +5327,7 @@
       "duration_min": 15,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5337,7 +5337,7 @@
       "duration_min": 15,
       "sla_limit_min": 20,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5347,7 +5347,7 @@
       "duration_min": 13,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5357,7 +5357,7 @@
       "duration_min": 8,
       "sla_limit_min": 30,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5377,7 +5377,7 @@
       "duration_min": 17,
       "sla_limit_min": 45,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5387,7 +5387,7 @@
       "duration_min": 7,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5397,7 +5397,7 @@
       "duration_min": 17,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5407,7 +5407,7 @@
       "duration_min": 5,
       "sla_limit_min": 55,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5427,7 +5427,7 @@
       "duration_min": 13,
       "sla_limit_min": 50,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5447,7 +5447,7 @@
       "duration_min": 60,
       "sla_limit_min": 25,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5457,7 +5457,7 @@
       "duration_min": 24,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5467,7 +5467,7 @@
       "duration_min": 6,
       "sla_limit_min": 40,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5487,7 +5487,7 @@
       "duration_min": 8,
       "sla_limit_min": 10,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5497,7 +5497,7 @@
       "duration_min": 70,
       "sla_limit_min": 25,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5507,7 +5507,7 @@
       "duration_min": 45,
       "sla_limit_min": 20,
       "sla_breached": true,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5517,7 +5517,7 @@
       "duration_min": 16,
       "sla_limit_min": 25,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     },
     {
@@ -5547,7 +5547,7 @@
       "duration_min": 33,
       "sla_limit_min": 70,
       "sla_breached": false,
-      "error_code": NaN,
+      "error_code": "",
       "error_class": "NONE"
     }
   ]

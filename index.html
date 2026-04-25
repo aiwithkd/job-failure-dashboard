@@ -1,124 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Job Failure Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',sans-serif;background:#0f1117;color:#e0e0e0;min-height:100vh}
 
-    #loader {
-      position: fixed; inset: 0; background: #0f1117;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 999;
-    }
-    #loader h2 { color: #4fc3f7; margin-bottom: 16px; font-size: 1.4rem; }
-    #loader p { color: #888; font-size: 0.9rem; margin-top: 8px; }
-    .spinner {
-      width: 48px; height: 48px; border: 5px solid #333;
-      border-top-color: #4fc3f7; border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    header{background:#161b22;padding:20px 32px;border-bottom:1px solid #30363d;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    header h1{font-size:1.35rem;color:#4fc3f7}
+    header span{font-size:0.8rem;color:#666}
 
-    header {
-      background: #161b22; padding: 20px 32px;
-      border-bottom: 1px solid #30363d;
-      display: flex; align-items: center; gap: 12px;
-    }
-    header h1 { font-size: 1.4rem; color: #4fc3f7; }
-    header span { font-size: 0.85rem; color: #888; }
+    .filters{background:#161b22;padding:14px 32px;border-bottom:1px solid #30363d;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end}
+    .filters label{font-size:0.78rem;color:#aaa;display:flex;flex-direction:column;gap:4px}
+    .filters select,.filters input{background:#0f1117;color:#e0e0e0;border:1px solid #30363d;padding:6px 10px;border-radius:6px;font-size:0.82rem;min-width:150px}
+    .filters button{background:#4fc3f7;color:#0f1117;border:none;padding:7px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.82rem}
+    .filters button:hover{background:#81d4fa}
 
-    .filters {
-      background: #161b22; padding: 16px 32px;
-      border-bottom: 1px solid #30363d;
-      display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
-    }
-    .filters label { font-size: 0.8rem; color: #aaa; display: flex; flex-direction: column; gap: 4px; }
-    .filters select, .filters input {
-      background: #0f1117; color: #e0e0e0; border: 1px solid #30363d;
-      padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; min-width: 160px;
-    }
-    .filters button {
-      background: #4fc3f7; color: #0f1117; border: none; padding: 8px 20px;
-      border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem;
-      align-self: flex-end;
-    }
-    .filters button:hover { background: #81d4fa; }
+    .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:22px 32px}
+    .kpi{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:18px;text-align:center}
+    .kpi .val{font-size:1.8rem;font-weight:700;color:#4fc3f7}
+    .kpi .lbl{font-size:0.75rem;color:#888;margin-top:4px}
+    .kpi.red .val{color:#ef5350}
+    .kpi.orange .val{color:#ffa726}
+    .kpi.green .val{color:#66bb6a}
 
-    .kpis {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-      padding: 24px 32px;
-    }
-    .kpi {
-      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
-      padding: 20px; text-align: center;
-    }
-    .kpi .val { font-size: 2rem; font-weight: 700; color: #4fc3f7; }
-    .kpi .lbl { font-size: 0.8rem; color: #888; margin-top: 4px; }
-    .kpi.red .val { color: #ef5350; }
-    .kpi.orange .val { color: #ffa726; }
+    .section{padding:0 32px 24px}
+    .section h2{font-size:0.85rem;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #21262d}
 
-    .charts-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      padding: 0 32px 24px;
-    }
-    .chart-box {
-      background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px;
-    }
-    .chart-box h3 { font-size: 0.95rem; color: #ccc; margin-bottom: 16px; }
-    .chart-box.full { grid-column: 1 / -1; }
-    canvas { width: 100% !important; }
+    .charts-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .charts-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+    .chart-box{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:18px}
+    .chart-box h3{font-size:0.88rem;color:#ccc;margin-bottom:14px}
+    .chart-box.span2{grid-column:span 2}
 
-    .table-section { padding: 0 32px 40px; }
-    .table-section h3 { font-size: 0.95rem; color: #ccc; margin-bottom: 12px; }
-    .tbl-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #30363d; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-    thead tr { background: #21262d; }
-    th { padding: 10px 14px; text-align: left; color: #aaa; font-weight: 600; white-space: nowrap; }
-    td { padding: 9px 14px; border-top: 1px solid #21262d; white-space: nowrap; }
-    tr:hover td { background: #1c2128; }
-    .badge {
-      display: inline-block; padding: 2px 8px; border-radius: 4px;
-      font-size: 0.75rem; font-weight: 600;
-    }
-    .badge.SUCCESS { background: #1b5e20; color: #a5d6a7; }
-    .badge.FAILED  { background: #b71c1c; color: #ef9a9a; }
-    .badge.ABENDED { background: #7b1fa2; color: #ce93d8; }
-    .badge.LATE    { background: #e65100; color: #ffcc80; }
-    .badge.RUNNING { background: #0277bd; color: #81d4fa; }
-    .breach-yes { color: #ef5350; font-weight: 600; }
-    .breach-no  { color: #66bb6a; }
+    .tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid #30363d}
+    table{width:100%;border-collapse:collapse;font-size:0.8rem}
+    thead tr{background:#21262d}
+    th{padding:10px 14px;text-align:left;color:#aaa;font-weight:600;white-space:nowrap}
+    td{padding:8px 14px;border-top:1px solid #21262d;white-space:nowrap}
+    tr:hover td{background:#1c2128}
+    .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700}
+    .SUCCESS{background:#1b5e20;color:#a5d6a7}
+    .FAILED{background:#b71c1c;color:#ef9a9a}
+    .ABENDED{background:#4a148c;color:#ce93d8}
+    .LATE{background:#e65100;color:#ffcc80}
+    .RUNNING{background:#01579b;color:#81d4fa}
+    .y{color:#ef5350;font-weight:600}
+    .n{color:#66bb6a}
+    .RETURN_CODE{color:#ffa726;font-size:0.72rem}
+    .ABEND_cls{color:#ef5350;font-size:0.72rem}
+    .JCL_ERROR{color:#ab47bc;font-size:0.72rem}
+    .NONE{color:#555;font-size:0.72rem}
 
-    footer { text-align: center; padding: 20px; color: #555; font-size: 0.8rem; border-top: 1px solid #21262d; }
-    footer a { color: #4fc3f7; text-decoration: none; }
-
-    @media (max-width: 768px) {
-      .kpis { grid-template-columns: 1fr 1fr; }
-      .charts-row { grid-template-columns: 1fr; }
-    }
+    footer{text-align:center;padding:20px;color:#444;font-size:0.78rem;border-top:1px solid #21262d;margin-top:8px}
+    footer a{color:#4fc3f7;text-decoration:none}
+    @media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}.charts-2,.charts-3{grid-template-columns:1fr}.chart-box.span2{grid-column:span 1}}
   </style>
 </head>
 <body>
 
-<div id="loader">
-  <div class="spinner"></div>
-  <h2>Loading Python Runtime...</h2>
-  <p>Pyodide is initializing — this takes ~10 seconds on first load</p>
-</div>
-
 <header>
   <h1>🖥️ Job Failure &amp; SLA Monitoring Dashboard</h1>
-  <span>Batch job execution analysis · Powered by Python + Pyodide</span>
+  <span id="gen-at"></span>
 </header>
 
 <div class="filters">
-  <label>Job Name
-    <select id="f-job"><option value="ALL">All Jobs</option></select>
-  </label>
+  <label>Job Name<select id="f-job"><option value="ALL">All Jobs</option></select></label>
   <label>Status
     <select id="f-status">
       <option value="ALL">All Statuses</option>
@@ -126,33 +76,47 @@
       <option>ABENDED</option><option>LATE</option><option>RUNNING</option>
     </select>
   </label>
-  <label>From Date <input type="date" id="f-from" value="2024-01-01"/></label>
-  <label>To Date   <input type="date" id="f-to"   value="2024-12-31"/></label>
-  <button onclick="applyFilters()">Apply</button>
+  <label>From<input type="date" id="f-from" value="2024-01-01"/></label>
+  <label>To<input type="date" id="f-to" value="2024-12-31"/></label>
+  <button onclick="applyFilters()">Apply Filters</button>
 </div>
 
 <div class="kpis">
   <div class="kpi"><div class="val" id="k-total">—</div><div class="lbl">Total Runs</div></div>
   <div class="kpi red"><div class="val" id="k-failed">—</div><div class="lbl">Failed / Abended</div></div>
   <div class="kpi orange"><div class="val" id="k-sla">—</div><div class="lbl">SLA Breaches</div></div>
-  <div class="kpi"><div class="val" id="k-jobs">—</div><div class="lbl">Unique Jobs</div></div>
+  <div class="kpi red"><div class="val" id="k-frate">—</div><div class="lbl">Failure Rate</div></div>
+  <div class="kpi green"><div class="val" id="k-jobs">—</div><div class="lbl">Unique Jobs</div></div>
 </div>
 
-<div class="charts-row">
-  <div class="chart-box"><h3>Daily Failure Trend</h3><canvas id="c-daily"></canvas></div>
-  <div class="chart-box"><h3>Error Code Distribution</h3><canvas id="c-error"></canvas></div>
-  <div class="chart-box"><h3>Top Unstable Jobs</h3><canvas id="c-unstable"></canvas></div>
-  <div class="chart-box"><h3>Daily SLA Breach Trend</h3><canvas id="c-sla"></canvas></div>
-  <div class="chart-box full"><h3>Avg Execution Time vs SLA Limit (minutes)</h3><canvas id="c-exec"></canvas></div>
+<div class="section">
+  <h2>Trends</h2>
+  <div class="charts-2">
+    <div class="chart-box"><h3>Daily Failure Count</h3><canvas id="c-daily"></canvas></div>
+    <div class="chart-box"><h3>Daily SLA Breach Count</h3><canvas id="c-sla"></canvas></div>
+  </div>
 </div>
 
-<div class="table-section">
-  <h3>Job Log Records <span id="tbl-count" style="color:#555;font-size:0.8rem;margin-left:8px;"></span></h3>
+<div class="section">
+  <h2>Job Analysis</h2>
+  <div class="charts-3">
+    <div class="chart-box"><h3>Top Unstable Jobs (Instability Score)</h3><canvas id="c-unstable"></canvas></div>
+    <div class="chart-box"><h3>Error Code Distribution</h3><canvas id="c-error"></canvas></div>
+    <div class="chart-box"><h3>Failure Rate by Status</h3><canvas id="c-status"></canvas></div>
+  </div>
+  <div class="charts-2">
+    <div class="chart-box span2"><h3>Avg Execution Time vs SLA Limit per Job (minutes)</h3><canvas id="c-exec"></canvas></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Job Log Records <span id="tbl-info" style="color:#555;font-weight:400;text-transform:none;letter-spacing:0;font-size:0.78rem;margin-left:8px"></span></h2>
   <div class="tbl-wrap">
     <table>
       <thead><tr>
         <th>Job Name</th><th>Status</th><th>Start Time</th>
-        <th>Duration (min)</th><th>SLA Limit (min)</th><th>SLA Breached</th><th>Error Code</th>
+        <th>Duration (min)</th><th>SLA Limit (min)</th>
+        <th>SLA Breached</th><th>Error Code</th><th>Error Class</th>
       </tr></thead>
       <tbody id="tbl-body"></tbody>
     </table>
@@ -160,212 +124,161 @@
 </div>
 
 <footer>
-  Built by <a href="https://github.com/aiwithkd" target="_blank">Kunal Deokar</a> ·
-  <a href="https://github.com/aiwithkd/job-failure-dashboard" target="_blank">View on GitHub</a>
+  Data processed with Python · Pandas · NumPy · Regex &nbsp;|&nbsp;
+  Built by <a href="https://github.com/aiwithkd" target="_blank">Kunal Deokar</a> &nbsp;|&nbsp;
+  <a href="https://github.com/aiwithkd/job-failure-dashboard" target="_blank">View Source on GitHub</a>
 </footer>
 
 <script>
-let allData = [];
+let S = null; // full summary from process.py
 let charts = {};
 
-async function initPyodide() {
-  const pyodide = await loadPyodide();
-  await pyodide.loadPackage(["pandas", "numpy"]);
+function destroyChart(id){ if(charts[id]){ charts[id].destroy(); delete charts[id]; } }
 
-  const result = await pyodide.runPythonAsync(`
-import pandas as pd
-import numpy as np
-import random, json
-from datetime import datetime, timedelta
+const GRID = "#21262d", TICK = "#888";
+const chartDefaults = { responsive:true, plugins:{ legend:{ labels:{ color:"#aaa", font:{size:11} } } } };
 
-random.seed(42)
-np.random.seed(42)
-
-JOB_NAMES = [
-    "PORTF_RPT_DAILY","CASH_FLOW_EXTRACT","INVEST_RECON_JOB",
-    "CLIENT_STMT_GEN","SLA_MONITOR_BATCH","TRANS_LOG_PARSER",
-    "POSITION_SYNC","RISK_CALC_JOB","DIVIDEND_PROC","FX_RATE_LOAD",
-    "NAV_CALC_BATCH","TRADE_SETTLE_CHK","PERF_ATTR_JOB","COMPLIANCE_RPT","EOD_CLOSE_PROC"
-]
-STATUSES = ["SUCCESS","FAILED","ABENDED","RUNNING","LATE"]
-WEIGHTS  = [0.65, 0.15, 0.08, 0.05, 0.07]
-SLA = {
-    "PORTF_RPT_DAILY":30,"CASH_FLOW_EXTRACT":20,"INVEST_RECON_JOB":45,
-    "CLIENT_STMT_GEN":60,"SLA_MONITOR_BATCH":15,"TRANS_LOG_PARSER":25,
-    "POSITION_SYNC":20,"RISK_CALC_JOB":40,"DIVIDEND_PROC":30,
-    "FX_RATE_LOAD":10,"NAV_CALC_BATCH":50,"TRADE_SETTLE_CHK":35,
-    "PERF_ATTR_JOB":45,"COMPLIANCE_RPT":55,"EOD_CLOSE_PROC":70
-}
-ERR = ["RC=8","RC=12","ABEND S0C7","ABEND S222","JCL ERROR"]
-base = datetime(2024,1,1)
-rows = []
-for _ in range(5000):
-    job = random.choice(JOB_NAMES)
-    st  = random.choices(STATUSES, weights=WEIGHTS)[0]
-    sla = SLA[job]
-    start = base + timedelta(days=random.randint(0,364), hours=random.randint(0,23), minutes=random.randint(0,59))
-    if st in ("FAILED","ABENDED"): dur = random.randint(1, max(1,sla//2))
-    elif st == "LATE":             dur = random.randint(sla+5, sla+60)
-    else:                          dur = random.randint(5, max(6,sla-1))
-    err = random.choice(ERR) if st in ("FAILED","ABENDED") else ""
-    rows.append({
-        "job_name": job, "status": st,
-        "start_time": start.strftime("%Y-%m-%d %H:%M"),
-        "duration_min": dur, "sla_limit_min": sla,
-        "sla_breached": dur > sla, "error_code": err,
-        "run_date": start.strftime("%Y-%m-%d")
-    })
-
-json.dumps(rows)
-  `);
-
-  allData = JSON.parse(result);
-
-  // populate job filter
-  const jobs = [...new Set(allData.map(r => r.job_name))].sort();
-  const sel = document.getElementById("f-job");
-  jobs.forEach(j => { const o = document.createElement("option"); o.value = o.text = j; sel.appendChild(o); });
-
-  document.getElementById("loader").style.display = "none";
-  applyFilters();
+function barChart(id, labels, datasets, opts={}){
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type:"bar",
+    data:{ labels, datasets },
+    options:{ ...chartDefaults, scales:{ x:{ ticks:{ color:TICK, maxTicksLimit: opts.maxTicks||8, maxRotation:opts.rotate||0 }, grid:{ color:GRID } }, y:{ ticks:{ color:TICK }, grid:{ color:GRID } } }, plugins:{ legend:{ display: opts.legend !== false, labels:{ color:"#aaa" } } }, ...opts }
+  });
 }
 
-function applyFilters() {
+function lineChart(id, labels, data, color){
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type:"line",
+    data:{ labels, datasets:[{ data, borderColor:color, backgroundColor:color+"28", fill:true, tension:0.35, pointRadius:0 }] },
+    options:{ ...chartDefaults, plugins:{ legend:{ display:false } }, scales:{ x:{ ticks:{ color:TICK, maxTicksLimit:8 }, grid:{ color:GRID } }, y:{ ticks:{ color:TICK }, grid:{ color:GRID } } } }
+  });
+}
+
+function doughnutChart(id, labels, data){
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type:"doughnut",
+    data:{ labels, datasets:[{ data, backgroundColor:["#ef5350","#ffa726","#ab47bc","#42a5f5","#26a69a","#ec407a"] }] },
+    options:{ ...chartDefaults, plugins:{ legend:{ position:"bottom", labels:{ color:"#aaa", font:{size:11} } } } }
+  });
+}
+
+function hBarChart(id, labels, data, color){
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type:"bar",
+    data:{ labels, datasets:[{ data, backgroundColor:color, borderRadius:3 }] },
+    options:{ indexAxis:"y", ...chartDefaults, plugins:{ legend:{ display:false } }, scales:{ x:{ ticks:{ color:TICK }, grid:{ color:GRID } }, y:{ ticks:{ color:"#ccc", font:{size:11} }, grid:{ color:GRID } } } }
+  });
+}
+
+function applyFilters(){
+  if(!S) return;
   const job    = document.getElementById("f-job").value;
   const status = document.getElementById("f-status").value;
   const from   = document.getElementById("f-from").value;
   const to     = document.getElementById("f-to").value;
 
-  const filtered = allData.filter(r =>
+  const rows = S.log_sample.filter(r =>
     (job    === "ALL" || r.job_name === job) &&
     (status === "ALL" || r.status   === status) &&
-    r.run_date >= from && r.run_date <= to
+    r.start_time.slice(0,10) >= from &&
+    r.start_time.slice(0,10) <= to
   );
-  renderAll(filtered);
-}
 
-function renderAll(data) {
-  // KPIs
-  const failed = data.filter(r => r.status === "FAILED" || r.status === "ABENDED").length;
-  const sla    = data.filter(r => r.sla_breached).length;
-  const jobs   = new Set(data.map(r => r.job_name)).size;
-  document.getElementById("k-total").textContent  = data.length.toLocaleString();
+  // recompute KPIs from filtered rows
+  const failed = rows.filter(r => r.status==="FAILED"||r.status==="ABENDED").length;
+  const sla    = rows.filter(r => r.sla_breached).length;
+  document.getElementById("k-total").textContent  = rows.length.toLocaleString();
   document.getElementById("k-failed").textContent = failed.toLocaleString();
   document.getElementById("k-sla").textContent    = sla.toLocaleString();
-  document.getElementById("k-jobs").textContent   = jobs;
+  document.getElementById("k-frate").textContent  = rows.length ? (failed/rows.length*100).toFixed(1)+"%" : "—";
+  document.getElementById("k-jobs").textContent   = new Set(rows.map(r=>r.job_name)).size;
+
+  renderTable(rows);
+}
+
+function renderAll(){
+  const kpi = S.kpis;
+  document.getElementById("k-total").textContent  = kpi.total_runs.toLocaleString();
+  document.getElementById("k-failed").textContent = kpi.total_failed.toLocaleString();
+  document.getElementById("k-sla").textContent    = kpi.total_sla_breaches.toLocaleString();
+  document.getElementById("k-frate").textContent  = kpi.failure_rate_pct + "%";
+  document.getElementById("k-jobs").textContent   = kpi.unique_jobs;
+  document.getElementById("gen-at").textContent   = "Data processed: " + S.generated_at;
 
   // Daily failures
-  const dailyFail = {};
-  data.filter(r => r.status === "FAILED" || r.status === "ABENDED")
-      .forEach(r => { dailyFail[r.run_date] = (dailyFail[r.run_date]||0)+1; });
-  const dfDates = Object.keys(dailyFail).sort();
-  renderBar("c-daily", dfDates, dfDates.map(d => dailyFail[d]), "#ef5350", "Failures");
+  const df = S.daily_failures;
+  lineChart("c-daily", df.map(r=>r.run_date_str), df.map(r=>r.count), "#ef5350");
 
-  // Error codes
-  const errCount = {};
-  data.filter(r => r.error_code).forEach(r => { errCount[r.error_code] = (errCount[r.error_code]||0)+1; });
-  renderDoughnut("c-error", Object.keys(errCount), Object.values(errCount));
+  // Daily SLA
+  const ds = S.daily_sla_breaches;
+  lineChart("c-sla", ds.map(r=>r.run_date_str), ds.map(r=>r.count), "#ffa726");
 
   // Top unstable jobs
-  const jobFail = {};
-  data.filter(r => r.status === "FAILED" || r.status === "ABENDED")
-      .forEach(r => { jobFail[r.job_name] = (jobFail[r.job_name]||0)+1; });
-  const sortedJobs = Object.entries(jobFail).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  renderHBar("c-unstable", sortedJobs.map(x=>x[0]), sortedJobs.map(x=>x[1]));
+  const tu = S.top_unstable_jobs.slice().reverse();
+  hBarChart("c-unstable", tu.map(r=>r.job_name), tu.map(r=>r.instability_score), "#ef5350");
 
-  // SLA breach trend
-  const slaTrend = {};
-  data.filter(r => r.sla_breached).forEach(r => { slaTrend[r.run_date] = (slaTrend[r.run_date]||0)+1; });
-  const slaDates = Object.keys(slaTrend).sort();
-  renderLine("c-sla", slaDates, slaDates.map(d=>slaTrend[d]), "#ffa726", "SLA Breaches");
+  // Error distribution
+  const ed = S.error_distribution;
+  doughnutChart("c-error", ed.map(r=>r.error_code), ed.map(r=>r.count));
+
+  // Status breakdown from log sample
+  const statusCount = {};
+  S.log_sample.forEach(r => { statusCount[r.status] = (statusCount[r.status]||0)+1; });
+  const statusColors = { SUCCESS:"#66bb6a", FAILED:"#ef5350", ABENDED:"#ab47bc", LATE:"#ffa726", RUNNING:"#42a5f5" };
+  barChart("c-status",
+    Object.keys(statusCount),
+    [{ data: Object.values(statusCount), backgroundColor: Object.keys(statusCount).map(s=>statusColors[s]||"#888"), borderRadius:4 }],
+    { legend: false }
+  );
 
   // Exec time vs SLA
-  const jobDur = {}, jobSla = {}, jobCnt = {};
-  data.forEach(r => {
-    jobDur[r.job_name] = (jobDur[r.job_name]||0) + r.duration_min;
-    jobSla[r.job_name] = r.sla_limit_min;
-    jobCnt[r.job_name] = (jobCnt[r.job_name]||0)+1;
-  });
-  const execJobs = Object.keys(jobDur).sort();
-  const avgDur   = execJobs.map(j => +(jobDur[j]/jobCnt[j]).toFixed(1));
-  const slaLims  = execJobs.map(j => jobSla[j]);
-  renderGroupedBar("c-exec", execJobs, avgDur, slaLims);
+  const js = S.all_job_stats.sort((a,b)=>b.avg_duration-a.avg_duration);
+  barChart("c-exec",
+    js.map(r=>r.job_name),
+    [
+      { label:"Avg Duration", data:js.map(r=>r.avg_duration), backgroundColor:"#42a5f5", borderRadius:3 },
+      { label:"SLA Limit",    data:js.map(r=>r.sla_limit),    backgroundColor:"#26a69a", borderRadius:3 }
+    ],
+    { rotate:30, maxTicks:15, legend:true }
+  );
 
-  // Table
-  renderTable(data.slice().sort((a,b)=>b.start_time.localeCompare(a.start_time)).slice(0,200));
+  // Populate job filter
+  const sel = document.getElementById("f-job");
+  [...new Set(S.log_sample.map(r=>r.job_name))].sort().forEach(j=>{
+    const o = document.createElement("option"); o.value = o.text = j; sel.appendChild(o);
+  });
+
+  renderTable(S.log_sample);
 }
 
-function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
-
-function renderBar(id, labels, data, color, label) {
-  destroyChart(id);
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "bar",
-    data: { labels, datasets: [{ label, data, backgroundColor: color, borderRadius: 2 }] },
-    options: { plugins:{legend:{display:false}}, scales:{x:{ticks:{maxTicksLimit:6,color:"#888"},grid:{color:"#21262d"}},y:{ticks:{color:"#888"},grid:{color:"#21262d"}}}, responsive:true }
-  });
-}
-
-function renderLine(id, labels, data, color, label) {
-  destroyChart(id);
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "line",
-    data: { labels, datasets: [{ label, data, borderColor: color, backgroundColor: color+"33", fill:true, tension:0.3, pointRadius:0 }] },
-    options: { plugins:{legend:{display:false}}, scales:{x:{ticks:{maxTicksLimit:6,color:"#888"},grid:{color:"#21262d"}},y:{ticks:{color:"#888"},grid:{color:"#21262d"}}}, responsive:true }
-  });
-}
-
-function renderDoughnut(id, labels, data) {
-  destroyChart(id);
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "doughnut",
-    data: { labels, datasets:[{ data, backgroundColor:["#ef5350","#ffa726","#ab47bc","#42a5f5","#26a69a"] }] },
-    options: { plugins:{ legend:{ position:"bottom", labels:{color:"#aaa",font:{size:11}} } }, responsive:true }
-  });
-}
-
-function renderHBar(id, labels, data) {
-  destroyChart(id);
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "bar",
-    data: { labels, datasets:[{ label:"Failures", data, backgroundColor:"#ef5350", borderRadius:2 }] },
-    options: { indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{ticks:{color:"#888"},grid:{color:"#21262d"}},y:{ticks:{color:"#ccc"},grid:{color:"#21262d"}}}, responsive:true }
-  });
-}
-
-function renderGroupedBar(id, labels, avg, sla) {
-  destroyChart(id);
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "bar",
-    data: { labels, datasets:[
-      { label:"Avg Duration", data:avg, backgroundColor:"#42a5f5", borderRadius:2 },
-      { label:"SLA Limit",    data:sla, backgroundColor:"#26a69a", borderRadius:2 }
-    ]},
-    options: { plugins:{legend:{labels:{color:"#aaa"}}}, scales:{x:{ticks:{color:"#888",maxRotation:30},grid:{color:"#21262d"}},y:{ticks:{color:"#888"},grid:{color:"#21262d"}}}, responsive:true }
-  });
-}
-
-function renderTable(data) {
-  document.getElementById("tbl-count").textContent = `(showing ${data.length} of ${allData.length})`;
-  const tbody = document.getElementById("tbl-body");
-  tbody.innerHTML = data.map(r => `
+function renderTable(rows){
+  document.getElementById("tbl-info").textContent = `showing ${rows.length} records`;
+  document.getElementById("tbl-body").innerHTML = rows.map(r=>`
     <tr>
       <td>${r.job_name}</td>
       <td><span class="badge ${r.status}">${r.status}</span></td>
       <td>${r.start_time}</td>
       <td>${r.duration_min}</td>
       <td>${r.sla_limit_min}</td>
-      <td class="${r.sla_breached ? 'breach-yes' : 'breach-no'}">${r.sla_breached ? '✗ Yes' : '✓ No'}</td>
-      <td>${r.error_code || '—'}</td>
+      <td class="${r.sla_breached?'y':'n'}">${r.sla_breached?'✗ Yes':'✓ No'}</td>
+      <td>${r.error_code||'—'}</td>
+      <td class="${r.error_class}">${r.error_class||'—'}</td>
     </tr>`).join("");
 }
 
-initPyodide();
+fetch("data/summary.json")
+  .then(r => r.json())
+  .then(data => { S = data; renderAll(); })
+  .catch(() => {
+    document.body.innerHTML = `<div style="padding:60px;text-align:center;color:#ef5350">
+      Failed to load data/summary.json.<br>
+      <small style="color:#666">Run <code>python process.py</code> locally and open via a local server, or view the <a href="https://github.com/aiwithkd/job-failure-dashboard" style="color:#4fc3f7">live hosted version</a>.</small>
+    </div>`;
+  });
 </script>
 </body>
 </html>

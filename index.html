@@ -4,196 +4,219 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Job Failure Dashboard · Kunal Deokar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg:       #080c14;
-      --surface:  #0d1117;
-      --card:     #111827;
-      --border:   #1f2937;
-      --border2:  #374151;
-      --text:     #f1f5f9;
-      --muted:    #94a3b8;
-      --dim:      #4b5563;
-      --blue:     #3b82f6;
-      --blue-lt:  #60a5fa;
-      --cyan:     #06b6d4;
-      --green:    #22c55e;
-      --red:      #ef4444;
-      --orange:   #f97316;
-      --purple:   #a855f7;
-      --yellow:   #eab308;
-      --grid:     #1f2937;
-      --tick:     #6b7280;
+      --bg:        #f5f7fa;
+      --white:     #ffffff;
+      --surface:   #f0f2f5;
+      --border:    #e2e6ed;
+      --text:      #0f172a;
+      --body:      #334155;
+      --muted:     #64748b;
+      --dim:       #94a3b8;
+      --blue:      #2563eb;
+      --blue-lt:   #eff6ff;
+      --blue-mid:  #bfdbfe;
+      --red:       #ef4444;
+      --red-lt:    #fef2f2;
+      --orange:    #f97316;
+      --orange-lt: #fff7ed;
+      --green:     #16a34a;
+      --green-lt:  #f0fdf4;
+      --purple:    #7c3aed;
+      --purple-lt: #f5f3ff;
+      --cyan:      #0891b2;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow:    0 4px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+      --radius:    14px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; font-size:14px; }
 
     /* ── HEADER ── */
-    header {
-      background: linear-gradient(135deg, #0d1117 0%, #111827 50%, #0f172a 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 0 36px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px; position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(12px);
+    header{
+      background:var(--white); border-bottom:1px solid var(--border);
+      padding:0 40px; height:66px;
+      display:flex; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:100;
+      box-shadow:var(--shadow-sm);
     }
-    .header-left { display: flex; align-items: center; gap: 14px; }
-    .header-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+    .logo{ display:flex; align-items:center; gap:12px; }
+    .logo-icon{
+      width:38px; height:38px; border-radius:10px; flex-shrink:0;
+      background:linear-gradient(135deg,#2563eb,#7c3aed);
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; box-shadow:0 4px 12px rgba(37,99,235,.35);
     }
-    header h1 { font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
-    header h1 span { color: var(--blue-lt); }
-    .header-meta { font-size: 0.72rem; color: var(--dim); margin-top: 2px; }
-    .header-right { display: flex; align-items: center; gap: 10px; }
-    .tag {
-      font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 20px;
-      border: 1px solid var(--border2); color: var(--muted); background: var(--card);
+    .logo-text h1{ font-size:1rem; font-weight:700; color:var(--text); letter-spacing:-.02em; }
+    .logo-text p{ font-size:0.7rem; color:var(--muted); margin-top:1px; }
+    .header-pills{ display:flex; align-items:center; gap:8px; }
+    .pill{
+      font-size:0.68rem; font-weight:500; padding:4px 12px; border-radius:20px;
+      border:1px solid var(--border); color:var(--muted); background:var(--bg);
     }
-    .tag.live { border-color: #166534; background: #052e16; color: #4ade80; }
-    .tag.live::before { content: '●'; margin-right: 5px; font-size: 0.6rem; }
+    .pill.green{ background:#dcfce7; border-color:#bbf7d0; color:#15803d; }
+    .pill.green::before{ content:'●'; margin-right:5px; font-size:0.55rem; }
+    .pill.blue{ background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); }
 
-    /* ── FILTERS ── */
-    .filters {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 12px 36px; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end;
+    /* ── FILTERS BAR ── */
+    .filters-bar{
+      background:var(--white); border-bottom:1px solid var(--border);
+      padding:12px 40px; display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;
     }
-    .filters label { font-size: 0.72rem; font-weight: 500; color: var(--muted); display: flex; flex-direction: column; gap: 5px; }
-    .filters select, .filters input[type="date"] {
-      background: var(--card); color: var(--text); border: 1px solid var(--border2);
-      padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-family: 'Inter', sans-serif;
-      min-width: 148px; outline: none; transition: border .15s;
+    .filters-bar label{ font-size:0.7rem; font-weight:600; color:var(--muted); display:flex; flex-direction:column; gap:4px; }
+    .filters-bar select, .filters-bar input[type="date"]{
+      background:var(--bg); color:var(--text); border:1.5px solid var(--border);
+      padding:7px 12px; border-radius:8px; font-size:0.8rem; font-family:'Inter',sans-serif;
+      min-width:148px; outline:none; transition:border .15s, box-shadow .15s;
     }
-    .filters select:focus, .filters input:focus { border-color: var(--blue); }
-    .filter-search {
-      background: var(--card); color: var(--text); border: 1px solid var(--border2);
-      padding: 7px 12px 7px 32px; border-radius: 8px; font-size: 0.8rem;
-      font-family: 'Inter', sans-serif; width: 200px; outline: none; transition: border .15s;
+    .filters-bar select:focus, .filters-bar input:focus{
+      border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,.1);
     }
-    .filter-search:focus { border-color: var(--blue); }
-    .search-wrap { position: relative; }
-    .search-wrap::before { content: '⌕'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--dim); font-size: 1rem; pointer-events: none; }
-    .btn {
-      background: var(--blue); color: #fff; border: none; padding: 8px 20px;
-      border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.8rem;
-      font-family: 'Inter', sans-serif; transition: background .15s; align-self: flex-end;
+    .search-wrap{ position:relative; }
+    .search-wrap::before{ content:'🔍'; position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:0.75rem; pointer-events:none; }
+    .search-input{
+      background:var(--bg); color:var(--text); border:1.5px solid var(--border);
+      padding:7px 12px 7px 32px; border-radius:8px; font-size:0.8rem;
+      font-family:'Inter',sans-serif; width:210px; outline:none; transition:border .15s, box-shadow .15s;
     }
-    .btn:hover { background: var(--blue-lt); }
-    .btn-ghost {
-      background: transparent; color: var(--muted); border: 1px solid var(--border2);
-      padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
-      font-family: 'Inter', sans-serif; transition: all .15s; align-self: flex-end;
+    .search-input:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,.1); }
+    .btn-primary{
+      background:var(--blue); color:#fff; border:none; padding:8px 20px;
+      border-radius:8px; font-weight:600; cursor:pointer; font-size:0.8rem;
+      font-family:'Inter',sans-serif; transition:all .15s; align-self:flex-end;
+      box-shadow:0 2px 8px rgba(37,99,235,.3);
     }
-    .btn-ghost:hover { border-color: var(--blue); color: var(--blue-lt); }
+    .btn-primary:hover{ background:#1d4ed8; box-shadow:0 4px 12px rgba(37,99,235,.4); transform:translateY(-1px); }
+    .btn-secondary{
+      background:var(--white); color:var(--body); border:1.5px solid var(--border);
+      padding:8px 16px; border-radius:8px; font-size:0.8rem; cursor:pointer;
+      font-family:'Inter',sans-serif; transition:all .15s; align-self:flex-end;
+    }
+    .btn-secondary:hover{ border-color:var(--blue); color:var(--blue); }
+
+    /* ── PAGE BODY ── */
+    .page{ padding:28px 40px; }
 
     /* ── KPI CARDS ── */
-    .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; padding: 24px 36px 8px; }
-    .kpi {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-      padding: 20px 20px 16px; position: relative; overflow: hidden; transition: border-color .2s;
+    .kpi-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:28px; }
+    .kpi-card{
+      background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+      padding:20px 20px 16px; box-shadow:var(--shadow-sm); transition:box-shadow .2s, transform .2s;
+      position:relative; overflow:hidden;
     }
-    .kpi:hover { border-color: var(--border2); }
-    .kpi::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--accent, var(--blue));
+    .kpi-card:hover{ box-shadow:var(--shadow); transform:translateY(-2px); }
+    .kpi-stripe{
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--stripe, var(--blue));
     }
-    .kpi .icon { font-size: 1.1rem; margin-bottom: 10px; opacity: 0.8; }
-    .kpi .val { font-size: 1.9rem; font-weight: 700; color: var(--accent, var(--blue)); letter-spacing: -0.03em; line-height: 1; }
-    .kpi .lbl { font-size: 0.72rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
-    .kpi .sub { font-size: 0.68rem; color: var(--dim); margin-top: 3px; }
-    .kpi.k-red   { --accent: var(--red); }
-    .kpi.k-orange{ --accent: var(--orange); }
-    .kpi.k-green { --accent: var(--green); }
-    .kpi.k-purple{ --accent: var(--purple); }
+    .kpi-top{ display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; }
+    .kpi-icon{
+      width:36px; height:36px; border-radius:9px; display:flex; align-items:center;
+      justify-content:center; font-size:1rem; background:var(--icon-bg, var(--blue-lt));
+    }
+    .kpi-badge{
+      font-size:0.62rem; font-weight:600; padding:2px 7px; border-radius:5px;
+      background:var(--badge-bg, var(--blue-lt)); color:var(--badge-color, var(--blue));
+    }
+    .kpi-val{ font-size:2rem; font-weight:800; color:var(--stripe, var(--blue)); letter-spacing:-.04em; line-height:1; }
+    .kpi-label{ font-size:0.72rem; font-weight:600; color:var(--body); margin-top:6px; }
+    .kpi-sub{ font-size:0.67rem; color:var(--dim); margin-top:3px; }
 
-    /* ── SECTIONS ── */
-    .section { padding: 20px 36px; }
-    .section-header {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    /* ── SECTION ── */
+    .section-title{
+      font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:uppercase;
+      letter-spacing:.1em; margin-bottom:14px; display:flex; align-items:center; gap:10px;
     }
-    .section-header h2 {
-      font-size: 0.7rem; font-weight: 600; color: var(--dim);
-      text-transform: uppercase; letter-spacing: .1em;
-    }
-    .section-line { flex: 1; height: 1px; background: var(--border); }
+    .section-title::after{ content:''; flex:1; height:1px; background:var(--border); }
 
     /* ── CHART CARDS ── */
-    .charts-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .charts-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .chart-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-      padding: 20px; transition: border-color .2s;
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+    .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px; }
+    .chart-card{
+      background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+      padding:22px; box-shadow:var(--shadow-sm); transition:box-shadow .2s;
     }
-    .chart-card:hover { border-color: var(--border2); }
-    .chart-card.span2 { grid-column: span 2; }
-    .chart-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .chart-card-header h3 { font-size: 0.82rem; font-weight: 600; color: var(--text); }
-    .chart-badge {
-      font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 6px;
-      background: var(--border); color: var(--muted);
+    .chart-card:hover{ box-shadow:var(--shadow); }
+    .chart-card.full{ grid-column:1/-1; }
+    .chart-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+    .chart-title{ font-size:0.85rem; font-weight:700; color:var(--text); }
+    .chart-sub{ font-size:0.67rem; color:var(--muted); margin-top:2px; }
+    .chart-tag{
+      font-size:0.65rem; font-weight:600; padding:3px 9px; border-radius:6px;
     }
+    .tag-red   { background:var(--red-lt);    color:var(--red); }
+    .tag-orange{ background:var(--orange-lt); color:var(--orange); }
+    .tag-blue  { background:var(--blue-lt);   color:var(--blue); }
+    .tag-purple{ background:var(--purple-lt); color:var(--purple); }
+    .tag-green { background:var(--green-lt);  color:var(--green); }
 
     /* ── TABLE ── */
-    .tbl-toolbar {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 12px; flex-wrap: wrap; gap: 10px;
+    .table-card{
+      background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow-sm); overflow:hidden;
     }
-    .tbl-toolbar h3 { font-size: 0.82rem; font-weight: 600; color: var(--text); }
-    .tbl-count { font-size: 0.72rem; color: var(--dim); margin-left: 8px; }
-    .tbl-wrap { border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    thead tr { background: #0d1117; }
-    th {
-      padding: 11px 16px; text-align: left; color: var(--muted);
-      font-weight: 600; font-size: 0.7rem; text-transform: uppercase;
-      letter-spacing: .05em; white-space: nowrap; border-bottom: 1px solid var(--border);
+    .table-header{
+      padding:16px 22px; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
     }
-    td { padding: 10px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; color: var(--text); }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover td { background: #131c2e; }
-    .badge {
-      display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 6px;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: .02em;
+    .table-header h3{ font-size:0.85rem; font-weight:700; color:var(--text); }
+    .table-count{
+      font-size:0.7rem; font-weight:500; padding:3px 10px; border-radius:6px;
+      background:var(--bg); border:1px solid var(--border); color:var(--muted);
     }
-    .badge.SUCCESS { background: #052e16; color: #4ade80; border: 1px solid #166534; }
-    .badge.FAILED  { background: #2d0a0a; color: #f87171; border: 1px solid #7f1d1d; }
-    .badge.ABENDED { background: #1e0a2e; color: #c084fc; border: 1px solid #581c87; }
-    .badge.LATE    { background: #1c0f00; color: #fb923c; border: 1px solid #7c2d12; }
-    .badge.RUNNING { background: #04142b; color: #60a5fa; border: 1px solid #1e3a5f; }
-    .breach-yes { color: var(--red); font-weight: 600; }
-    .breach-no  { color: var(--green); }
-    .err-rc   { color: var(--orange); }
-    .err-ab   { color: var(--red); }
-    .err-jcl  { color: var(--purple); }
-    .err-none { color: var(--dim); }
-    .job-name { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--blue-lt); }
+    .tbl-scroll{ overflow-x:auto; }
+    table{ width:100%; border-collapse:collapse; font-size:0.78rem; }
+    thead tr{ background:var(--bg); }
+    th{
+      padding:10px 18px; text-align:left; color:var(--muted);
+      font-weight:600; font-size:0.68rem; text-transform:uppercase; letter-spacing:.06em;
+      white-space:nowrap; border-bottom:1px solid var(--border);
+    }
+    td{ padding:11px 18px; border-bottom:1px solid var(--border); color:var(--body); white-space:nowrap; }
+    tbody tr:last-child td{ border-bottom:none; }
+    tbody tr:hover td{ background:#f8fafc; }
+    .badge{
+      display:inline-flex; align-items:center; padding:3px 10px; border-radius:6px;
+      font-size:0.67rem; font-weight:700; letter-spacing:.03em;
+    }
+    .badge.SUCCESS{ background:#dcfce7; color:#15803d; }
+    .badge.FAILED { background:#fee2e2; color:#dc2626; }
+    .badge.ABENDED{ background:#ede9fe; color:#6d28d9; }
+    .badge.LATE   { background:#ffedd5; color:#c2410c; }
+    .badge.RUNNING{ background:#dbeafe; color:#1d4ed8; }
+    .breach-yes{ color:var(--red); font-weight:600; font-size:0.75rem; }
+    .breach-no { color:var(--green); font-size:0.75rem; }
+    .job-mono{ font-family:'Courier New',monospace; font-size:0.74rem; color:var(--blue); font-weight:600; }
+    .err-code{ font-family:'Courier New',monospace; font-size:0.72rem; color:var(--purple); }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 24px 36px; color: var(--dim); font-size: 0.72rem;
-      border-top: 1px solid var(--border); margin-top: 8px;
-      display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;
+    footer{
+      background:var(--white); border-top:1px solid var(--border); margin-top:8px;
+      padding:20px 40px; display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:12px;
     }
-    footer a { color: var(--blue-lt); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    .footer-stack { display: flex; gap: 8px; align-items: center; }
-    .stack-pill {
-      font-size: 0.65rem; padding: 2px 8px; border-radius: 4px;
-      background: var(--card); border: 1px solid var(--border); color: var(--muted);
+    .footer-left{ font-size:0.72rem; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .footer-stack{ display:flex; gap:6px; }
+    .stack-tag{
+      font-size:0.65rem; font-weight:500; padding:2px 8px; border-radius:5px;
+      background:var(--bg); border:1px solid var(--border); color:var(--muted);
     }
+    .footer-right{ font-size:0.72rem; display:flex; gap:16px; }
+    .footer-right a{ color:var(--blue); text-decoration:none; font-weight:500; }
+    .footer-right a:hover{ text-decoration:underline; }
 
-    @media(max-width: 1100px) { .charts-3 { grid-template-columns: 1fr 1fr; } }
-    @media(max-width: 800px) {
-      .kpis { grid-template-columns: 1fr 1fr; }
-      .charts-2, .charts-3 { grid-template-columns: 1fr; }
-      .chart-card.span2 { grid-column: span 1; }
-      header { padding: 0 20px; }
-      .filters, .section, .kpis { padding-left: 20px; padding-right: 20px; }
+    /* ── RESPONSIVE ── */
+    @media(max-width:1200px){ .kpi-grid{ grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:900px){
+      .kpi-grid{ grid-template-columns:1fr 1fr; }
+      .grid-2,.grid-3{ grid-template-columns:1fr; }
+      .chart-card.full{ grid-column:span 1; }
+      header,.filters-bar,.page,footer{ padding-left:20px; padding-right:20px; }
     }
   </style>
 </head>
@@ -201,22 +224,22 @@
 
 <!-- HEADER -->
 <header>
-  <div class="header-left">
-    <div class="header-icon">🖥️</div>
-    <div>
-      <h1>Job Failure &amp; <span>SLA Monitoring</span> Dashboard</h1>
-      <div class="header-meta" id="gen-at">Loading data...</div>
+  <div class="logo">
+    <div class="logo-icon">🖥️</div>
+    <div class="logo-text">
+      <h1>Job Failure &amp; SLA Monitoring Dashboard</h1>
+      <p id="gen-at">Loading data…</p>
     </div>
   </div>
-  <div class="header-right">
-    <span class="tag live">Live</span>
-    <span class="tag">5,000 Job Runs · 2024</span>
-    <span class="tag">Fintech Batch Processing</span>
+  <div class="header-pills">
+    <span class="pill green">Live</span>
+    <span class="pill blue">5,000 Job Runs · 2024</span>
+    <span class="pill">Fintech Batch Processing</span>
   </div>
 </header>
 
 <!-- FILTERS -->
-<div class="filters">
+<div class="filters-bar">
   <label>Job Name
     <select id="f-job"><option value="ALL">All Jobs</option></select>
   </label>
@@ -227,272 +250,306 @@
       <option>ABENDED</option><option>LATE</option><option>RUNNING</option>
     </select>
   </label>
-  <label>From Date <input type="date" id="f-from" value="2024-01-01"/></label>
-  <label>To Date   <input type="date" id="f-to"   value="2024-12-31"/></label>
-  <button class="btn" onclick="applyFilters()">Apply Filters</button>
-  <button class="btn-ghost" onclick="resetFilters()">Reset</button>
+  <label>From <input type="date" id="f-from" value="2024-01-01"/></label>
+  <label>To   <input type="date" id="f-to"   value="2024-12-31"/></label>
+  <button class="btn-primary"   onclick="applyFilters()">Apply Filters</button>
+  <button class="btn-secondary" onclick="resetFilters()">Reset</button>
   <div style="margin-left:auto">
-    <label style="font-size:0.72rem;font-weight:500;color:var(--muted);display:flex;flex-direction:column;gap:5px;">
+    <label style="font-size:0.7rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;gap:4px">
       Search Logs
       <div class="search-wrap">
-        <input class="filter-search" id="tbl-search" type="text" placeholder="job name, error code..." oninput="searchTable()"/>
+        <input class="search-input" id="tbl-search" type="text" placeholder="job name, status, error…" oninput="searchTable()"/>
       </div>
     </label>
   </div>
 </div>
 
-<!-- KPI CARDS -->
-<div class="kpis">
-  <div class="kpi">
-    <div class="icon">📋</div>
-    <div class="val" id="k-total">—</div>
-    <div class="lbl">Total Job Runs</div>
-    <div class="sub">Full year · 2024</div>
-  </div>
-  <div class="kpi k-red">
-    <div class="icon">🔴</div>
-    <div class="val" id="k-failed">—</div>
-    <div class="lbl">Failed / Abended</div>
-    <div class="sub" id="k-frate-sub">—</div>
-  </div>
-  <div class="kpi k-orange">
-    <div class="icon">⚠️</div>
-    <div class="val" id="k-sla">—</div>
-    <div class="lbl">SLA Breaches</div>
-    <div class="sub" id="k-breach-sub">Avg +— min over limit</div>
-  </div>
-  <div class="kpi k-red">
-    <div class="icon">📉</div>
-    <div class="val" id="k-frate">—</div>
-    <div class="lbl">Failure Rate</div>
-    <div class="sub">FAILED + ABENDED</div>
-  </div>
-  <div class="kpi k-green">
-    <div class="icon">⚙️</div>
-    <div class="val" id="k-jobs">—</div>
-    <div class="lbl">Unique Jobs</div>
-    <div class="sub">Monitored batch jobs</div>
-  </div>
-</div>
+<!-- PAGE -->
+<div class="page">
 
-<!-- TRENDS -->
-<div class="section">
-  <div class="section-header"><h2>Execution Trends</h2><div class="section-line"></div></div>
-  <div class="charts-2">
-    <div class="chart-card">
-      <div class="chart-card-header">
-        <h3>Daily Failure Count</h3>
-        <span class="chart-badge" style="color:var(--red);background:#2d0a0a;border:1px solid #7f1d1d">FAILED + ABENDED</span>
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-stripe" style="--stripe:#2563eb"></div>
+      <div class="kpi-top">
+        <div class="kpi-icon" style="--icon-bg:#eff6ff">📋</div>
+        <span class="kpi-badge" style="--badge-bg:#eff6ff;--badge-color:#2563eb">2024</span>
       </div>
-      <canvas id="c-daily" height="90"></canvas>
+      <div class="kpi-val" style="--stripe:#2563eb" id="k-total">—</div>
+      <div class="kpi-label">Total Job Runs</div>
+      <div class="kpi-sub">Full year dataset</div>
     </div>
-    <div class="chart-card">
-      <div class="chart-card-header">
-        <h3>Daily SLA Breach Count</h3>
-        <span class="chart-badge" style="color:var(--orange);background:#1c0f00;border:1px solid #7c2d12">OVER THRESHOLD</span>
+    <div class="kpi-card">
+      <div class="kpi-stripe" style="--stripe:#ef4444"></div>
+      <div class="kpi-top">
+        <div class="kpi-icon" style="--icon-bg:#fef2f2">🔴</div>
+        <span class="kpi-badge" style="--badge-bg:#fef2f2;--badge-color:#dc2626" id="k-frate-badge">—%</span>
       </div>
-      <canvas id="c-sla" height="90"></canvas>
+      <div class="kpi-val" style="--stripe:#ef4444" id="k-failed">—</div>
+      <div class="kpi-label">Failed / Abended</div>
+      <div class="kpi-sub">Critical job failures</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-stripe" style="--stripe:#f97316"></div>
+      <div class="kpi-top">
+        <div class="kpi-icon" style="--icon-bg:#fff7ed">⚠️</div>
+        <span class="kpi-badge" style="--badge-bg:#fff7ed;--badge-color:#c2410c" id="k-breach-badge">+— min</span>
+      </div>
+      <div class="kpi-val" style="--stripe:#f97316" id="k-sla">—</div>
+      <div class="kpi-label">SLA Breaches</div>
+      <div class="kpi-sub">Avg breach delta</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-stripe" style="--stripe:#dc2626"></div>
+      <div class="kpi-top">
+        <div class="kpi-icon" style="--icon-bg:#fef2f2">📉</div>
+        <span class="kpi-badge" style="--badge-bg:#fef2f2;--badge-color:#dc2626">Rate</span>
+      </div>
+      <div class="kpi-val" style="--stripe:#dc2626" id="k-frate">—</div>
+      <div class="kpi-label">Failure Rate</div>
+      <div class="kpi-sub">FAILED + ABENDED</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-stripe" style="--stripe:#16a34a"></div>
+      <div class="kpi-top">
+        <div class="kpi-icon" style="--icon-bg:#f0fdf4">⚙️</div>
+        <span class="kpi-badge" style="--badge-bg:#f0fdf4;--badge-color:#15803d">Monitored</span>
+      </div>
+      <div class="kpi-val" style="--stripe:#16a34a" id="k-jobs">—</div>
+      <div class="kpi-label">Unique Jobs</div>
+      <div class="kpi-sub">Batch job types</div>
     </div>
   </div>
-</div>
 
-<!-- JOB ANALYSIS -->
-<div class="section">
-  <div class="section-header"><h2>Job Analysis</h2><div class="section-line"></div></div>
-  <div class="charts-3">
+  <!-- TRENDS -->
+  <div class="section-title">Execution Trends</div>
+  <div class="grid-2">
     <div class="chart-card">
-      <div class="chart-card-header">
-        <h3>Top Unstable Jobs</h3>
-        <span class="chart-badge">Instability Score</span>
+      <div class="chart-header">
+        <div><div class="chart-title">Daily Failure Count</div><div class="chart-sub">FAILED + ABENDED runs per day</div></div>
+        <span class="chart-tag tag-red">Failures</span>
       </div>
-      <canvas id="c-unstable" height="180"></canvas>
+      <canvas id="c-daily" height="100"></canvas>
     </div>
     <div class="chart-card">
-      <div class="chart-card-header">
-        <h3>Error Code Distribution</h3>
-        <span class="chart-badge">By Frequency</span>
+      <div class="chart-header">
+        <div><div class="chart-title">Daily SLA Breach Count</div><div class="chart-sub">Jobs exceeding SLA threshold per day</div></div>
+        <span class="chart-tag tag-orange">SLA</span>
       </div>
-      <canvas id="c-error" height="180"></canvas>
-    </div>
-    <div class="chart-card">
-      <div class="chart-card-header">
-        <h3>Runs by Status</h3>
-        <span class="chart-badge">All Jobs</span>
-      </div>
-      <canvas id="c-status" height="180"></canvas>
+      <canvas id="c-sla" height="100"></canvas>
     </div>
   </div>
-  <div class="charts-2">
-    <div class="chart-card span2">
-      <div class="chart-card-header">
-        <h3>Avg Execution Time vs SLA Limit per Job</h3>
-        <span class="chart-badge">Minutes · Blue = Actual · Teal = SLA</span>
-      </div>
-      <canvas id="c-exec" height="70"></canvas>
-    </div>
-  </div>
-</div>
 
-<!-- LOG TABLE -->
-<div class="section">
-  <div class="tbl-toolbar">
-    <div>
-      <h3 style="display:inline">Job Log Records</h3>
-      <span class="tbl-count" id="tbl-info"></span>
+  <!-- JOB ANALYSIS -->
+  <div class="section-title">Job Analysis</div>
+  <div class="grid-3">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div><div class="chart-title">Top Unstable Jobs</div><div class="chart-sub">Ranked by instability score</div></div>
+        <span class="chart-tag tag-red">Score</span>
+      </div>
+      <canvas id="c-unstable" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div><div class="chart-title">Error Code Distribution</div><div class="chart-sub">By frequency across all failures</div></div>
+        <span class="chart-tag tag-purple">Errors</span>
+      </div>
+      <canvas id="c-error" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div><div class="chart-title">Runs by Status</div><div class="chart-sub">All job executions · 2024</div></div>
+        <span class="chart-tag tag-blue">Status</span>
+      </div>
+      <canvas id="c-status" height="200"></canvas>
     </div>
   </div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr>
-        <th>Job Name</th><th>Status</th><th>Start Time</th>
-        <th>Duration (min)</th><th>SLA Limit (min)</th>
-        <th>SLA Breached</th><th>Error Code</th><th>Error Class</th>
-      </tr></thead>
-      <tbody id="tbl-body"></tbody>
-    </table>
+  <div class="grid-2">
+    <div class="chart-card full">
+      <div class="chart-header">
+        <div><div class="chart-title">Avg Execution Time vs SLA Limit</div><div class="chart-sub">Per job — minutes · Blue = Actual avg · Teal = SLA threshold</div></div>
+        <span class="chart-tag tag-blue">All 15 Jobs</span>
+      </div>
+      <canvas id="c-exec" height="65"></canvas>
+    </div>
   </div>
-</div>
+
+  <!-- TABLE -->
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Job Log Records</h3>
+      <span class="table-count" id="tbl-info">—</span>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr>
+          <th>Job Name</th><th>Status</th><th>Start Time</th>
+          <th style="text-align:right">Duration (min)</th>
+          <th style="text-align:right">SLA Limit (min)</th>
+          <th>SLA Breached</th><th>Error Code</th><th>Error Class</th>
+        </tr></thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /page -->
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-stack">
-    <span style="color:var(--muted)">Built with</span>
-    <span class="stack-pill">Python</span>
-    <span class="stack-pill">Pandas</span>
-    <span class="stack-pill">NumPy</span>
-    <span class="stack-pill">Regex</span>
-    <span class="stack-pill">Chart.js</span>
+  <div class="footer-left">
+    <span>Built with</span>
+    <div class="footer-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">Pandas</span>
+      <span class="stack-tag">NumPy</span>
+      <span class="stack-tag">Regex</span>
+      <span class="stack-tag">Chart.js</span>
+    </div>
   </div>
-  <span style="color:var(--border2)">·</span>
-  <a href="https://github.com/aiwithkd" target="_blank">Kunal Deokar</a>
-  <span style="color:var(--border2)">·</span>
-  <a href="https://github.com/aiwithkd/job-failure-dashboard" target="_blank">View Source on GitHub ↗</a>
+  <div class="footer-right">
+    <a href="https://github.com/aiwithkd" target="_blank">Kunal Deokar ↗</a>
+    <a href="https://github.com/aiwithkd/job-failure-dashboard" target="_blank">View Source on GitHub ↗</a>
+  </div>
 </footer>
 
 <script>
-let S = null;
-let charts = {};
-let currentRows = [];
+let S = null, currentRows = [], charts = {};
 
-const GRID = "#1f2937", TICK = "#6b7280";
+const GRID="#e2e6ed", TICK="#94a3b8";
 
-function destroyChart(id){ if(charts[id]){ charts[id].destroy(); delete charts[id]; } }
+function dc(id){ if(charts[id]){ charts[id].destroy(); delete charts[id]; } }
 
-function lineChart(id, labels, data, color, height){
-  destroyChart(id);
-  charts[id] = new Chart(document.getElementById(id), {
+const TTP = {
+  backgroundColor:"#fff", borderColor:"#e2e6ed", borderWidth:1,
+  titleColor:"#0f172a", bodyColor:"#64748b", padding:12,
+  boxPadding:4, cornerRadius:8,
+  callbacks:{ label: ctx => ` ${ctx.formattedValue}` }
+};
+
+function lineChart(id, labels, data, color){
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
     type:"line",
     data:{ labels, datasets:[{
-      data, borderColor:color, backgroundColor:color+"20",
-      fill:true, tension:0.4, pointRadius:0, borderWidth:2,
-      pointHoverRadius:4, pointHoverBackgroundColor:color
+      data, borderColor:color, backgroundColor:color+"18",
+      fill:true, tension:0.45, pointRadius:0, borderWidth:2.5,
+      pointHoverRadius:5, pointHoverBackgroundColor:"#fff",
+      pointHoverBorderColor:color, pointHoverBorderWidth:2
     }]},
     options:{
       responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{display:false}, tooltip:{ mode:"index", intersect:false, backgroundColor:"#111827", borderColor:"#374151", borderWidth:1, titleColor:"#f1f5f9", bodyColor:"#94a3b8", padding:10 } },
+      plugins:{ legend:{display:false}, tooltip:{...TTP, mode:"index", intersect:false} },
       scales:{
-        x:{ ticks:{ color:TICK, maxTicksLimit:8, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} },
-        y:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} }
+        x:{ ticks:{color:TICK, maxTicksLimit:8, font:{size:11}}, grid:{color:GRID}, border:{color:GRID} },
+        y:{ ticks:{color:TICK, font:{size:11}}, grid:{color:GRID}, border:{color:GRID}, beginAtZero:true }
       }
     }
   });
 }
 
 function hBarChart(id, labels, data){
-  destroyChart(id);
-  const colors = data.map((_,i) => i===0 ? "#ef4444" : i===1 ? "#f97316" : i===2 ? "#eab308" : "#3b82f6");
-  charts[id] = new Chart(document.getElementById(id), {
+  dc(id);
+  const palette = ["#ef4444","#f97316","#eab308","#3b82f6","#06b6d4","#8b5cf6","#ec4899","#10b981","#f59e0b","#6366f1"];
+  charts[id] = new Chart(document.getElementById(id),{
     type:"bar",
-    data:{ labels, datasets:[{ data, backgroundColor:colors, borderRadius:4, borderSkipped:false }]},
+    data:{ labels, datasets:[{ data, backgroundColor:palette.slice(0,data.length).reverse(), borderRadius:6, borderSkipped:false }]},
     options:{
       indexAxis:"y", responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{display:false}, tooltip:{ backgroundColor:"#111827", borderColor:"#374151", borderWidth:1, titleColor:"#f1f5f9", bodyColor:"#94a3b8", padding:10 } },
+      plugins:{ legend:{display:false}, tooltip:TTP },
       scales:{
-        x:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} },
-        y:{ ticks:{ color:"#e2e8f0", font:{size:11} }, grid:{ color:"transparent" }, border:{color:GRID} }
+        x:{ ticks:{color:TICK, font:{size:11}}, grid:{color:GRID}, border:{color:GRID} },
+        y:{ ticks:{color:"#334155", font:{size:11,weight:"500"}}, grid:{color:"transparent"}, border:{color:GRID} }
       }
     }
   });
 }
 
 function doughnutChart(id, labels, data){
-  destroyChart(id);
-  charts[id] = new Chart(document.getElementById(id), {
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
     type:"doughnut",
-    data:{ labels, datasets:[{ data, backgroundColor:["#ef4444","#f97316","#a855f7","#3b82f6","#06b6d4"], borderWidth:2, borderColor:"#111827", hoverOffset:6 }]},
+    data:{ labels, datasets:[{
+      data,
+      backgroundColor:["#ef4444","#f97316","#7c3aed","#2563eb","#0891b2"],
+      borderWidth:3, borderColor:"#fff", hoverOffset:8
+    }]},
     options:{
-      responsive:true, maintainAspectRatio:true, cutout:"60%",
-      plugins:{ legend:{ position:"bottom", labels:{ color:"#94a3b8", font:{size:11}, padding:12, usePointStyle:true } }, tooltip:{ backgroundColor:"#111827", borderColor:"#374151", borderWidth:1, titleColor:"#f1f5f9", bodyColor:"#94a3b8", padding:10 } }
+      responsive:true, maintainAspectRatio:true, cutout:"62%",
+      plugins:{
+        legend:{ position:"bottom", labels:{ color:"#64748b", font:{size:11}, padding:14, usePointStyle:true, pointStyleWidth:8 } },
+        tooltip:TTP
+      }
     }
   });
 }
 
 function barChart(id, labels, data, colors){
-  destroyChart(id);
-  charts[id] = new Chart(document.getElementById(id), {
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
     type:"bar",
-    data:{ labels, datasets:[{ data, backgroundColor:colors, borderRadius:6, borderSkipped:false }]},
+    data:{ labels, datasets:[{ data, backgroundColor:colors, borderRadius:8, borderSkipped:false }]},
     options:{
       responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{display:false}, tooltip:{ backgroundColor:"#111827", borderColor:"#374151", borderWidth:1, titleColor:"#f1f5f9", bodyColor:"#94a3b8", padding:10 } },
+      plugins:{ legend:{display:false}, tooltip:TTP },
       scales:{
-        x:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:"transparent" }, border:{color:GRID} },
-        y:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} }
+        x:{ ticks:{color:TICK, font:{size:11}}, grid:{color:"transparent"}, border:{color:GRID} },
+        y:{ ticks:{color:TICK, font:{size:11}}, grid:{color:GRID}, border:{color:GRID}, beginAtZero:true }
       }
     }
   });
 }
 
 function groupedBarChart(id, labels, d1, d2){
-  destroyChart(id);
-  charts[id] = new Chart(document.getElementById(id), {
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
     type:"bar",
     data:{ labels, datasets:[
-      { label:"Avg Duration (min)", data:d1, backgroundColor:"#3b82f6", borderRadius:3, borderSkipped:false },
-      { label:"SLA Limit (min)",    data:d2, backgroundColor:"#06b6d4", borderRadius:3, borderSkipped:false }
+      { label:"Avg Duration (min)", data:d1, backgroundColor:"#3b82f6", borderRadius:4, borderSkipped:false },
+      { label:"SLA Limit (min)",    data:d2, backgroundColor:"#06b6d4", borderRadius:4, borderSkipped:false }
     ]},
     options:{
       responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{ labels:{ color:"#94a3b8", font:{size:11}, usePointStyle:true } }, tooltip:{ mode:"index", intersect:false, backgroundColor:"#111827", borderColor:"#374151", borderWidth:1, titleColor:"#f1f5f9", bodyColor:"#94a3b8", padding:10 } },
+      plugins:{ legend:{ labels:{ color:"#64748b", font:{size:11}, usePointStyle:true, pointStyleWidth:8 } }, tooltip:{...TTP, mode:"index", intersect:false} },
       scales:{
-        x:{ ticks:{ color:TICK, maxRotation:30, font:{size:10} }, grid:{ color:"transparent" }, border:{color:GRID} },
-        y:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} }
+        x:{ ticks:{color:TICK, maxRotation:30, font:{size:10}}, grid:{color:"transparent"}, border:{color:GRID} },
+        y:{ ticks:{color:TICK, font:{size:11}}, grid:{color:GRID}, border:{color:GRID}, beginAtZero:true }
       }
     }
   });
 }
 
 function renderAll(){
-  const kpi = S.kpis;
-  document.getElementById("k-total").textContent   = kpi.total_runs.toLocaleString();
-  document.getElementById("k-failed").textContent  = kpi.total_failed.toLocaleString();
-  document.getElementById("k-sla").textContent     = kpi.total_sla_breaches.toLocaleString();
-  document.getElementById("k-frate").textContent   = kpi.failure_rate_pct + "%";
-  document.getElementById("k-jobs").textContent    = kpi.unique_jobs;
-  document.getElementById("k-frate-sub").textContent  = kpi.failure_rate_pct + "% of all runs";
-  document.getElementById("k-breach-sub").textContent = "Avg +" + kpi.avg_breach_delta_min + " min over limit";
-  document.getElementById("gen-at").textContent    = "Data processed: " + S.generated_at + " · Python + Pandas";
+  const k = S.kpis;
+  document.getElementById("k-total").textContent   = k.total_runs.toLocaleString();
+  document.getElementById("k-failed").textContent  = k.total_failed.toLocaleString();
+  document.getElementById("k-sla").textContent     = k.total_sla_breaches.toLocaleString();
+  document.getElementById("k-frate").textContent   = k.failure_rate_pct + "%";
+  document.getElementById("k-jobs").textContent    = k.unique_jobs;
+  document.getElementById("k-frate-badge").textContent  = k.failure_rate_pct + "% rate";
+  document.getElementById("k-breach-badge").textContent = "+" + k.avg_breach_delta_min + " min avg";
+  document.getElementById("gen-at").textContent    = "Processed " + k.total_runs.toLocaleString() + " records · " + S.generated_at;
 
-  lineChart("c-daily", S.daily_failures.map(r=>r.run_date_str), S.daily_failures.map(r=>r.count), "#ef4444");
-  lineChart("c-sla",   S.daily_sla_breaches.map(r=>r.run_date_str), S.daily_sla_breaches.map(r=>r.count), "#f97316");
+  lineChart("c-daily", S.daily_failures.map(r=>r.run_date_str),      S.daily_failures.map(r=>r.count),      "#ef4444");
+  lineChart("c-sla",   S.daily_sla_breaches.map(r=>r.run_date_str),  S.daily_sla_breaches.map(r=>r.count),  "#f97316");
 
   const tu = S.top_unstable_jobs.slice().reverse();
   hBarChart("c-unstable", tu.map(r=>r.job_name), tu.map(r=>r.instability_score));
 
-  const ed = S.error_distribution;
-  doughnutChart("c-error", ed.map(r=>r.error_code), ed.map(r=>r.count));
+  doughnutChart("c-error", S.error_distribution.map(r=>r.error_code), S.error_distribution.map(r=>r.count));
 
-  const statusColors = { SUCCESS:"#22c55e", FAILED:"#ef4444", ABENDED:"#a855f7", LATE:"#f97316", RUNNING:"#3b82f6" };
+  const SC = { SUCCESS:"#22c55e", FAILED:"#ef4444", ABENDED:"#8b5cf6", LATE:"#f97316", RUNNING:"#3b82f6" };
   const sc = {};
-  S.log_sample.forEach(r => { sc[r.status] = (sc[r.status]||0)+1; });
-  barChart("c-status", Object.keys(sc), Object.values(sc), Object.keys(sc).map(s=>statusColors[s]||"#888"));
+  S.log_sample.forEach(r=>{ sc[r.status]=(sc[r.status]||0)+1; });
+  barChart("c-status", Object.keys(sc), Object.values(sc), Object.keys(sc).map(s=>SC[s]||"#94a3b8"));
 
   const js = S.all_job_stats.sort((a,b)=>b.avg_duration-a.avg_duration);
   groupedBarChart("c-exec", js.map(r=>r.job_name), js.map(r=>r.avg_duration), js.map(r=>r.sla_limit));
 
   const sel = document.getElementById("f-job");
   [...new Set(S.log_sample.map(r=>r.job_name))].sort().forEach(j=>{
-    const o = document.createElement("option"); o.value = o.text = j; sel.appendChild(o);
+    const o=document.createElement("option"); o.value=o.text=j; sel.appendChild(o);
   });
 
   currentRows = S.log_sample;
@@ -501,78 +558,68 @@ function renderAll(){
 
 function applyFilters(){
   if(!S) return;
-  const job    = document.getElementById("f-job").value;
-  const status = document.getElementById("f-status").value;
-  const from   = document.getElementById("f-from").value;
-  const to     = document.getElementById("f-to").value;
-  currentRows = S.log_sample.filter(r =>
-    (job    === "ALL" || r.job_name === job) &&
-    (status === "ALL" || r.status   === status) &&
-    r.start_time.slice(0,10) >= from &&
-    r.start_time.slice(0,10) <= to
+  const job=document.getElementById("f-job").value;
+  const status=document.getElementById("f-status").value;
+  const from=document.getElementById("f-from").value;
+  const to=document.getElementById("f-to").value;
+  currentRows = S.log_sample.filter(r=>
+    (job==="ALL"||r.job_name===job) &&
+    (status==="ALL"||r.status===status) &&
+    r.start_time.slice(0,10)>=from &&
+    r.start_time.slice(0,10)<=to
   );
-  const failed = currentRows.filter(r=>r.status==="FAILED"||r.status==="ABENDED").length;
-  const sla    = currentRows.filter(r=>r.sla_breached).length;
+  const failed=currentRows.filter(r=>r.status==="FAILED"||r.status==="ABENDED").length;
   document.getElementById("k-total").textContent  = currentRows.length.toLocaleString();
   document.getElementById("k-failed").textContent = failed.toLocaleString();
-  document.getElementById("k-sla").textContent    = sla.toLocaleString();
-  document.getElementById("k-frate").textContent  = currentRows.length ? (failed/currentRows.length*100).toFixed(1)+"%" : "—";
+  document.getElementById("k-sla").textContent    = currentRows.filter(r=>r.sla_breached).length.toLocaleString();
+  document.getElementById("k-frate").textContent  = currentRows.length?(failed/currentRows.length*100).toFixed(1)+"%":"—";
   document.getElementById("k-jobs").textContent   = new Set(currentRows.map(r=>r.job_name)).size;
   renderTable(currentRows);
 }
 
 function resetFilters(){
-  document.getElementById("f-job").value    = "ALL";
-  document.getElementById("f-status").value = "ALL";
-  document.getElementById("f-from").value   = "2024-01-01";
-  document.getElementById("f-to").value     = "2024-12-31";
-  document.getElementById("tbl-search").value = "";
+  document.getElementById("f-job").value="ALL";
+  document.getElementById("f-status").value="ALL";
+  document.getElementById("f-from").value="2024-01-01";
+  document.getElementById("f-to").value="2024-12-31";
+  document.getElementById("tbl-search").value="";
   renderAll();
 }
 
 function searchTable(){
-  const q = document.getElementById("tbl-search").value.toLowerCase();
-  const filtered = currentRows.filter(r =>
-    r.job_name.toLowerCase().includes(q) ||
-    r.status.toLowerCase().includes(q) ||
+  const q=document.getElementById("tbl-search").value.toLowerCase();
+  renderTable(currentRows.filter(r=>
+    r.job_name.toLowerCase().includes(q)||
+    r.status.toLowerCase().includes(q)||
     (r.error_code||"").toLowerCase().includes(q)
-  );
-  renderTable(filtered);
-}
-
-function errClass(c){
-  if(!c||c==="NONE") return "err-none";
-  if(c==="RETURN_CODE") return "err-rc";
-  if(c==="ABEND") return "err-ab";
-  if(c==="JCL_ERROR") return "err-jcl";
-  return "";
+  ));
 }
 
 function renderTable(rows){
-  document.getElementById("tbl-info").textContent = `${rows.length.toLocaleString()} records`;
+  document.getElementById("tbl-info").textContent = rows.length.toLocaleString()+" records";
   document.getElementById("tbl-body").innerHTML = rows.map(r=>`
     <tr>
-      <td class="job-name">${r.job_name}</td>
+      <td class="job-mono">${r.job_name}</td>
       <td><span class="badge ${r.status}">${r.status}</span></td>
       <td style="color:var(--muted)">${r.start_time}</td>
-      <td style="text-align:right;padding-right:32px">${r.duration_min}</td>
-      <td style="text-align:right;padding-right:32px">${r.sla_limit_min}</td>
+      <td style="text-align:right;padding-right:36px;font-weight:500">${r.duration_min}</td>
+      <td style="text-align:right;padding-right:36px;color:var(--muted)">${r.sla_limit_min}</td>
       <td class="${r.sla_breached?'breach-yes':'breach-no'}">${r.sla_breached?'✗ Breached':'✓ Within'}</td>
-      <td style="font-family:monospace;font-size:0.75rem">${r.error_code||'—'}</td>
-      <td class="${errClass(r.error_class)}">${r.error_class||'—'}</td>
+      <td class="err-code">${r.error_code||'—'}</td>
+      <td style="color:var(--muted);font-size:0.72rem">${r.error_class||'—'}</td>
     </tr>`).join("");
 }
 
 fetch("https://raw.githubusercontent.com/aiwithkd/job-failure-dashboard/main/data/summary.json")
-  .then(r => r.json())
-  .then(data => { S = data; renderAll(); })
-  .catch(err => {
-    document.body.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:16px">
-        <div style="font-size:2rem">⚠️</div>
-        <div style="color:#ef4444;font-weight:600">Failed to load dashboard data</div>
-        <div style="color:#6b7280;font-size:0.8rem">${err}</div>
-        <a href="https://github.com/aiwithkd/job-failure-dashboard" style="color:#3b82f6;font-size:0.8rem">View on GitHub ↗</a>
+  .then(r=>r.json())
+  .then(data=>{ S=data; renderAll(); })
+  .catch(err=>{
+    document.querySelector(".page").innerHTML=`
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px;gap:16px;text-align:center">
+        <div style="font-size:2.5rem">⚠️</div>
+        <div style="font-weight:700;color:#ef4444;font-size:1.1rem">Failed to load dashboard data</div>
+        <div style="color:#64748b;font-size:0.82rem;max-width:400px">${err}</div>
+        <a href="https://github.com/aiwithkd/job-failure-dashboard" style="color:#2563eb;font-size:0.82rem;font-weight:500">View on GitHub ↗</a>
       </div>`;
   });
 </script>

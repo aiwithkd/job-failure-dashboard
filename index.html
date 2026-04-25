@@ -270,7 +270,7 @@ function renderTable(rows){
     </tr>`).join("");
 }
 
-fetch("data/summary.json")
+fetch("https://raw.githubusercontent.com/aiwithkd/job-failure-dashboard/main/data/summary.json")
   .then(r => r.json())
   .then(data => { S = data; renderAll(); })
   .catch(() => {

@@ -273,10 +273,10 @@ function renderTable(rows){
 fetch("https://raw.githubusercontent.com/aiwithkd/job-failure-dashboard/main/data/summary.json")
   .then(r => r.json())
   .then(data => { S = data; renderAll(); })
-  .catch(() => {
+  .catch((err) => {
     document.body.innerHTML = `<div style="padding:60px;text-align:center;color:#ef5350">
       Failed to load data/summary.json.<br>
-      <small style="color:#666">Run <code>python process.py</code> locally and open via a local server, or view the <a href="https://github.com/aiwithkd/job-failure-dashboard" style="color:#4fc3f7">live hosted version</a>.</small>
+      <small style="color:#aaa;font-size:0.85rem">${err}</small>
     </div>`;
   });
 </script>

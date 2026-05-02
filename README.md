@@ -219,4 +219,60 @@ python -m http.server 8000
 
 ---
 
+---
+
+## Challenges Faced During Implementation
+
+### 1. SLA breach detection needed per-job thresholds, not a global value
+
+**Problem:** The first version used a single global SLA threshold (30 minutes) for all jobs. This flagged fast jobs like `FX_RATE_LOAD` (SLA: 10 min) as fine when they ran for 25 minutes, and missed breaches on slower jobs like `EOD_CLOSE_PROC` (SLA: 70 min) that finished in 65 minutes.
+
+**Resolution:** Moved SLA thresholds into a per-job dictionary (`SLA_MINUTES`) in the generation script and carried them through as a column in the dataset. The breach flag is computed row-by-row as `duration_min > sla_limit_min` rather than against any global constant.
+
+---
+
+### 2. Instability score needed to reflect both failure rate AND SLA breach rate
+
+**Problem:** Ranking jobs by failure rate alone missed jobs that rarely failed outright but consistently ran over SLA — a different kind of operational risk that is just as impactful.
+
+**Resolution:** Defined a composite instability score: `failure_rate * 0.6 + sla_breach_rate * 0.4`. The 60/40 weighting reflects that hard failures are more severe than SLA slips, but both matter. This gave `TRADE_SETTLE_CHK` the highest instability score despite not having the highest raw failure rate.
+
+---
+
+### 3. Timestamp anomaly detection — defining "off window" correctly
+
+**Problem:** Flagging jobs that run between midnight and 4am sounds simple but the initial logic used `start_time.hour < 4` which missed jobs that started at 11:58pm and ran past midnight — the start time was fine but the execution window was anomalous.
+
+**Resolution:** Kept the check on `start_time.hour` for simplicity since the dataset uses start time as the primary signal. Added a note in the code that a production version should check both start and end time windows. This is a documented limitation, not a silent bug.
+
+---
+
+### 4. JSON serialization failing on pandas NaN values
+
+**Problem:** `json.dump()` threw errors when the summary dict contained `NaN` values from pandas aggregations — for example, average breach delta when there were no breaches for a job.
+
+**Resolution:** Used `json.dump(..., allow_nan=False, default=lambda x: None if isinstance(x, float) and x != x else str(x))` — this converts `NaN` to JSON `null` rather than the invalid `NaN` literal that standard JSON does not support.
+
+---
+
+### 5. Dashboard filter state resets on page reload
+
+**Problem:** The date range and job name filters reset every time the page reloaded, which was frustrating when analysing a specific job or date range across multiple views.
+
+**Resolution:** For a static GitHub Pages deployment, persisting filter state would require URL query params or localStorage. Given this is a portfolio demo, the decision was to keep it stateless — filters are fast to re-apply and the added complexity was not worth it for a read-only dashboard. Documented as a known limitation.
+
+---
+
+## Future Scope
+
+This dashboard runs entirely on static pre-processed data — no server, no database, no APIs. Extensions the architecture already supports:
+
+- **Predictive failure scoring** — train a scikit-learn model on historical job features (hour of day, day of week, recent failure streak, duration trend) to predict next-run failure probability. The pipeline already produces all the features needed.
+- **Real log ingestion** — replace the synthetic generator with a parser for real mainframe job logs (JES2/JES3 output, Control-M exports). The column schema is already modelled on real mainframe log formats.
+- **Alerting integration** — add a threshold check in `process.py` that writes an `alerts.json` file when instability scores exceed a defined limit, consumable by PagerDuty or a Slack webhook.
+- **Live streaming version** — replace the static `summary.json` with a WebSocket feed to render the dashboard in real time as jobs complete, converting this from a historical analytics tool to an operational monitoring tool.
+- **LLM-powered root cause suggestions** — findings are already structured as JSON. An LLM layer could generate natural language root cause hypotheses per job based on error code patterns and failure streaks, without changing the core pipeline.
+
+---
+
 *Built by [Kunal Deokar](https://github.com/aiwithkd)*

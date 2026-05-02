@@ -218,6 +218,30 @@
       .chart-card.full{ grid-column:span 1; }
       header,.filters-bar,.page,footer{ padding-left:20px; padding-right:20px; }
     }
+    @media(max-width:768px){
+      header{ padding:0 16px; height:auto; min-height:56px; flex-wrap:wrap; gap:8px; padding-top:10px; padding-bottom:10px; }
+      .logo-text h1{ font-size:.85rem; }
+      .header-pills{ gap:6px; }
+      .pill{ font-size:.62rem; padding:3px 8px; }
+      .filters-bar{ padding:10px 16px; gap:8px; overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
+      .filters-bar label{ flex-shrink:0; }
+      .filters-bar select, .filters-bar input[type="date"]{ min-width:110px; font-size:.75rem; }
+      .search-input{ width:140px; }
+      .btn-primary,.btn-secondary{ padding:7px 12px; font-size:.75rem; }
+      .page{ padding:16px; }
+      .kpi-grid{ grid-template-columns:1fr 1fr; gap:10px; }
+      .chart-card{ padding:16px; }
+      .tbl-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      table{ font-size:.7rem; min-width:600px; }
+      footer{ flex-direction:column; align-items:flex-start; padding:16px; gap:10px; }
+      .fl{ flex-wrap:wrap; }
+    }
+    @media(max-width:480px){
+      .kpi-grid{ grid-template-columns:1fr; }
+      .kpi-val{ font-size:1.6rem; }
+      .logo-text p{ display:none; }
+      .filters-bar{ gap:6px; }
+    }
   </style>
 </head>
 <body>

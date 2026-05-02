@@ -37,7 +37,7 @@
     html{ scroll-behavior:smooth; }
     body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; font-size:14px; }
 
-    /* ── HEADER ── */
+    /* Header */
     header{
       background:var(--white); border-bottom:1px solid var(--border);
       padding:0 40px; height:66px;
@@ -63,7 +63,7 @@
     .pill.green::before{ content:'●'; margin-right:5px; font-size:0.55rem; }
     .pill.blue{ background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); }
 
-    /* ── FILTERS BAR ── */
+    /* Filters */
     .filters-bar{
       background:var(--white); border-bottom:1px solid var(--border);
       padding:12px 40px; display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;
@@ -99,10 +99,10 @@
     }
     .btn-secondary:hover{ border-color:var(--blue); color:var(--blue); }
 
-    /* ── PAGE BODY ── */
+    /* Page body */
     .page{ padding:28px 40px; }
 
-    /* ── KPI CARDS ── */
+    /* KPI cards */
     .kpi-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:28px; }
     .kpi-card{
       background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
@@ -127,14 +127,14 @@
     .kpi-label{ font-size:0.72rem; font-weight:600; color:var(--body); margin-top:6px; }
     .kpi-sub{ font-size:0.67rem; color:var(--dim); margin-top:3px; }
 
-    /* ── SECTION ── */
+    /* Section */
     .section-title{
       font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:uppercase;
       letter-spacing:.1em; margin-bottom:14px; display:flex; align-items:center; gap:10px;
     }
     .section-title::after{ content:''; flex:1; height:1px; background:var(--border); }
 
-    /* ── CHART CARDS ── */
+    /* Chart cards */
     .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
     .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px; }
     .chart-card{
@@ -155,7 +155,7 @@
     .tag-purple{ background:var(--purple-lt); color:var(--purple); }
     .tag-green { background:var(--green-lt);  color:var(--green); }
 
-    /* ── TABLE ── */
+    /* Table */
     .table-card{
       background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
       box-shadow:var(--shadow-sm); overflow:hidden;
@@ -194,7 +194,7 @@
     .job-mono{ font-family:'Courier New',monospace; font-size:0.74rem; color:var(--blue); font-weight:600; }
     .err-code{ font-family:'Courier New',monospace; font-size:0.72rem; color:var(--purple); }
 
-    /* ── FOOTER ── */
+    /* Footer */
     footer{
       background:var(--white); border-top:1px solid var(--border); margin-top:8px;
       padding:20px 40px; display:flex; align-items:center; justify-content:space-between;
@@ -210,7 +210,7 @@
     .footer-right a{ color:var(--blue); text-decoration:none; font-weight:500; }
     .footer-right a:hover{ text-decoration:underline; }
 
-    /* ── RESPONSIVE ── */
+    /* Responsive */
     @media(max-width:1200px){ .kpi-grid{ grid-template-columns:repeat(3,1fr); } }
     @media(max-width:900px){
       .kpi-grid{ grid-template-columns:1fr 1fr; }
